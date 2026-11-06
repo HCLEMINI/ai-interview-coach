@@ -1,0 +1,44 @@
+{
+  "name": "ai-interview-coach",
+  "version": "0.1.0",
+  "description": "AI面试模拟舱 - 本地AI面试训练工具（智联/北森/前程无忧三模式）",
+  "main": "./out/main/index.js",
+  "author": "HCLEMINI",
+  "license": "Apache-2.0",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "preview": "electron-vite preview",
+    "clean:store": "node -e \"const fs=require('fs');const path=require('path');const os=require('os');const pkg=require('./package.json');const appName=pkg.productName||pkg.name;const base=process.platform==='win32'?process.env.APPDATA:process.platform==='darwin'?path.join(os.homedir(),'Library','Application Support'):(process.env.XDG_CONFIG_HOME||path.join(os.homedir(),'.config'));const dirs=[path.join(base,appName),path.join(base,appName+'-dev')];const files=['config.json','config-dev.json'];for(const dir of dirs){for(const file of files){fs.rmSync(path.join(dir,file),{force:true});}}\"",
+    "add-portable-marker": "node scripts/add-portable-marker.js",
+    "build:win:nsis": "npm run build && electron-builder --win nsis --config electron-builder.yml",
+    "build:win:portable": "npm run build && npm run add-portable-marker && electron-builder --win zip --config electron-builder-portable.yml",
+    "build:win:all": "npm run build && npm run add-portable-marker && electron-builder --win nsis --config electron-builder.yml && electron-builder --win zip --config electron-builder-portable.yml"
+  },
+  "dependencies": {
+    "@fontsource/roboto": "^5.2.10",
+    "echarts": "^5.5.0",
+    "electron-store": "^8.1.0",
+    "zustand": "^4.4.7"
+  },
+  "devDependencies": {
+    "@electron-toolkit/preload": "^3.0.0",
+    "@electron-toolkit/tsconfig": "^1.0.1",
+    "@electron-toolkit/utils": "^4.0.0",
+    "@types/node": "^20.10.4",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.17",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.16",
+    "electron": "^42.5.1",
+    "electron-builder": "^26.15.3",
+    "electron-vite": "^5.0.0",
+    "esbuild": "^0.28.1",
+    "postcss": "^8.4.32",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwindcss": "^3.3.6",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.7"
+  }
+}

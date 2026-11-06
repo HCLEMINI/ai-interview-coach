@@ -1,0 +1,15 @@
+# 便携版专用打包配置：继承主配置并添加 portable.txt 标记文件
+
+extends: electron-builder.yml
+
+extraResources:
+  - from: build/portable.txt
+    to: portable.txt
+
+artifactName: ${productName}-Portable-${version}.${ext}
+
+win:
+  target:
+    - target: zip
+      arch:
+        - x64

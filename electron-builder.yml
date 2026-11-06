@@ -1,0 +1,42 @@
+appId: com.aicoach.app
+productName: ai-interview-coach
+directories:
+  output: dist
+  buildResources: build
+
+icon: assets/logo.png
+
+files:
+  - from: out/main
+    to: out/main
+  - from: out/preload
+    to: out/preload
+  - from: out/renderer
+    to: out/renderer
+  - from: assets
+    to: assets
+  - package.json
+  - "!**/*.map"
+
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+    - target: zip
+      arch:
+        - x64
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  deleteAppDataOnUninstall: false
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: AI面试模拟舱
+  displayLanguageSelector: false
+  include: build/installer.nsh
+
+portable:
+  artifactName: ${productName}-Portable-${version}.${ext}

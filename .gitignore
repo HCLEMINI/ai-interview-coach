@@ -1,0 +1,14 @@
+node_modules/
+out/
+dist/
+*.log
+.DS_Store
+# Python 边车缓存与构建产物
+__pycache__/
+*.pyc
+*.tsbuildinfo
+# 运行期数据（含录音、转写、网关密钥）绝不入库
+app-data/
+data/
+# 历史备份压缩包等杂物
+.git.zip*
